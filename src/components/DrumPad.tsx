@@ -1,4 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import { border, colors } from "../utils/cssVariables";
+
+import styled from "styled-components";
 
 interface IDumpPadProps {
   id: string;
@@ -36,8 +39,16 @@ const DrumPad: React.FunctionComponent<IDumpPadProps> = props => {
 
   const keyText = String.fromCharCode(props.keyCode);
 
+  const Button = styled.button`
+    background-color: ${colors.accent};
+    border-radius: ${border.defaultRadius};
+    color: ${colors.lightText};
+    height: 4rem;
+    width: 4rem;
+  `;
+
   return (
-    <button
+    <Button
       id={props.id}
       className="drum-pad"
       onClick={handlePlaySoundCallback}
@@ -46,13 +57,8 @@ const DrumPad: React.FunctionComponent<IDumpPadProps> = props => {
       }
     >
       {keyText}
-      <audio
-        id={keyText}
-        className="clip"
-        src={props.url}
-        ref={audioElement}
-      ></audio>
-    </button>
+      <audio id={keyText} className="clip" src={props.url} ref={audioElement} />
+    </Button>
   );
 };
 
