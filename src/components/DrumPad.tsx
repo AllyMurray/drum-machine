@@ -10,6 +10,18 @@ interface IDumpPadProps {
   onChange: (text: string) => void;
 }
 
+const Button = styled.button`
+  background-color: ${colors.accent};
+  border-radius: ${border.defaultRadius};
+  color: ${colors.lightText};
+  height: 4rem;
+  width: 4rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const DrumPad: React.FunctionComponent<IDumpPadProps> = props => {
   const audioElement = useRef<HTMLAudioElement>(null);
 
@@ -35,21 +47,9 @@ const DrumPad: React.FunctionComponent<IDumpPadProps> = props => {
     return () => {
       document.removeEventListener("keydown", handleKeyDownCallback);
     };
-  }, [handleKeyDownCallback]);
+  });
 
   const keyText = String.fromCharCode(props.keyCode);
-
-  const Button = styled.button`
-    background-color: ${colors.accent};
-    border-radius: ${border.defaultRadius};
-    color: ${colors.lightText};
-    height: 4rem;
-    width: 4rem;
-
-    &:hover {
-      cursor: pointer;
-    }
-  `;
 
   return (
     <Button
