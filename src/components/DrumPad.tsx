@@ -45,6 +45,10 @@ const DrumPad: React.FunctionComponent<IDumpPadProps> = props => {
     color: ${colors.lightText};
     height: 4rem;
     width: 4rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   `;
 
   return (
